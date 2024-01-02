@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Route, Link, Switch, Routes } from "react-router-dom";
-
+// import Home from './Home';
 import { Layout, Typography, Space } from "antd";
 
 import {
