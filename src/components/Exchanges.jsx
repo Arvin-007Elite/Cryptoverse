@@ -1,21 +1,21 @@
-/* eslint-disable no-unused-vars */
+
+
 
 import React from 'react';
 import millify from 'millify';
 import { Collapse, Row, Col, Typography, Avatar } from 'antd';
 import HTMLReactParser from 'html-react-parser';
-// import { useQuery } from 'react-query';
-// import axios from 'axios';
 import { useGetExchangesQuery } from '../services/cryptoApi';
 import Loader from './Loader';
 
 const { Text } = Typography;
 const { Panel } = Collapse;
- const Exchanges = () => {
+
+const Exchanges = () => {
   const { data, isFetching } = useGetExchangesQuery();
   const exchangesList = data?.data?.exchanges;
- // Note: To access this endpoint you need premium plan
-  if (isFetching) return <Loader />;
+
+  if (isFetching || !exchangesList) return <Loader />;
 
   return (
     <>
@@ -27,7 +27,7 @@ const { Panel } = Collapse;
       </Row>
       <Row>
         {exchangesList.map((exchange) => (
-          <Col span={24}>
+          <Col span={24} key={exchange.uuid}>
             <Collapse>
               <Panel
                 key={exchange.uuid}
@@ -43,7 +43,7 @@ const { Panel } = Collapse;
                     <Col span={6}>{millify(exchange.numberOfMarkets)}</Col>
                     <Col span={6}>{millify(exchange.marketShare)}%</Col>
                   </Row>
-                  )}
+                )}
               >
                 {HTMLReactParser(exchange.description || '')}
               </Panel>
@@ -56,15 +56,3 @@ const { Panel } = Collapse;
 };
 
 export default Exchanges;
-
-
-
-// import React from 'react'
-
-// const Exchanges = () => {
-//   return (
-//     <div>Exchanges</div>
-//   )
-// }
-
-// export default Exchanges

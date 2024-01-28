@@ -111,6 +111,7 @@
 import React, { useState }  from 'react';
 import HTMLReactParser from 'html-react-parser';
 import { useParams } from 'react-router-dom';
+
 import millify from 'millify';
 import { Col, Row, Typography, Select } from 'antd';
 import {
@@ -124,6 +125,8 @@ import {
   TrophyOutlined,
   CheckOutlined,
 } from "@ant-design/icons";
+import { useSelector } from 'react-redux'; // Importing useSelector
+import { selectApi } from '../services/cryptoApi'; // Importing selectApi
 import Loader from './Loader';
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../services/cryptoApi";
 import LineChart from './LineChart';
@@ -135,13 +138,14 @@ const { Option } = Select;
 
 
 const CryptoDetails = () => {
+  // const api = useSelector(selectApi);
   const { coinId } = useParams();
   const [timePeriod, setTimePeriod] = useState('7d')
-  const { data, isFetching } = useGetCryptoDetailsQuery(coinId)
-  const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod })
+  const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod})
   const cryptoDetails = data?.data?.coin;
 
-  // console.log(data);
+  console.log(data);
 
   if (isFetching) return <Loader />
 
@@ -164,8 +168,12 @@ const CryptoDetails = () => {
   ];
 
 
-    return (
-    <Col className="coin-detail-container">
+  
+
+
+
+  return (
+        <Col className="coin-detail-container">
       <Col className="coin-heading-container">
         <Title level={2} className="coin-name">
           {data?.data?.coin.name} ({data?.data?.coin.symbol}) Price
@@ -224,7 +232,7 @@ const CryptoDetails = () => {
         </Col>
       </Col>
     </Col>
-  );
-};
+  )
+}
 
 export default CryptoDetails

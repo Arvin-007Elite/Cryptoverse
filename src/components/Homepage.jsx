@@ -95,7 +95,7 @@ const { Title } = Typography;
 const Homepage = () => {
   const dispatch = useDispatch();
   const { data, isFetching } = useGetCryptosQuery(10);
-  const globalStats = data?.data?.stats;
+  const globalStats = data?.data?.stats || {} ;
 
   // console.log(data);
 
