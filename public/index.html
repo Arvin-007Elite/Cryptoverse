@@ -36,3 +36,20 @@
 </body>
 
 </html>
+
+
+<!-- 
+
+Now, let's address the warnings and errors you've encountered:
+
+ReactDOM.render warning: This warning indicates that ReactDOM.render is deprecated in React 18. You should switch to using createRoot instead. You can learn more about this from the provided link.
+
+[antd: Menu] children is deprecated: This warning suggests using items instead of children for the Menu component in your code.
+
+MenuItem should not leave undefined key: Ensure that all MenuItem components have a unique key prop defined.
+
+Each child in a list should have a unique "key" prop: This warning usually occurs when rendering a list of components, and each component in the list doesn't have a unique key prop. Make sure to provide a unique key prop to each child component.
+
+No routes matched location "/crypto/undefined": This error suggests that there might be an issue with the routing configuration or passing undefined values to the route.
+
+Failed to load resource: the server responded with a status of 401: This error indicates that the server returned a status code of 401 (Unauthorized). You need to ensure that your authentication credentials (if required) are correctly provided when accessing the resource. -->
